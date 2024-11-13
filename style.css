@@ -131,3 +131,12 @@ img{
 }
 
 
+#clear-history{
+  /* padding-top:4rem ; */
+  background-color: aliceblue;
+  margin-top: 4rem;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+

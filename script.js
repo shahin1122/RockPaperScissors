@@ -5,6 +5,7 @@ const choices = document.querySelectorAll(".choice");
 const message = document.getElementById('msg');
 const userScorePara = document.getElementById('user-score');
 const compScorePara = document.getElementById('computer-score');
+const clearHistoryBtn = document.getElementById('clear-history'); // Clear History Button
 
 // Load the previous scores and message from localStorage
 userScorePara.innerText = userScore;
@@ -56,7 +57,6 @@ function playGame(userChoice) {
     } else {
         let userWin = true;
         if (userChoice === 'rock') {
-            
             userWin = computerChoice === 'paper' ? false : true;
         } else if (userChoice === 'paper') {
             userWin = computerChoice === 'scissor' ? false : true;
@@ -67,6 +67,19 @@ function playGame(userChoice) {
     }
 }
 
+// Function to clear history (reset scores and message)
+function clearHistory() {
+    localStorage.removeItem('userScore');
+    localStorage.removeItem('compScore');
+    userScore = 0;
+    compScore = 0;
+    userScorePara.innerText = userScore;
+    compScorePara.innerText = compScore;
+    message.innerText = 'Game reset. Choose your move!';
+    message.style.backgroundColor = 'initial';
+    message.style.color = 'initial';
+}
+
 // Looping through choices for tracking user clicks
 choices.forEach((choice) => {
     choice.addEventListener("click", () => {
@@ -74,3 +87,6 @@ choices.forEach((choice) => {
         playGame(userChoice); // Start the game
     });
 });
+
+// Add event listener for clear history button
+clearHistoryBtn.addEventListener('click', clearHistory);
